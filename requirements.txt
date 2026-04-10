@@ -1,0 +1,22 @@
+# If you are using CUDA, install torch/torchvision/mmcv builds that match
+# your CUDA version before or alongside this file.
+torch
+torchvision
+timm
+mmcv
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+tqdm
+scikit-learn
+opencv-python
+albumentations
+albucore==0.0.16
+tensorboard
+PyYAML
+yacs
+nibabel
+monai
+thop

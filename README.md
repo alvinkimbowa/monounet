@@ -164,3 +164,7 @@ If analysis is enabled in `run_train.sh`, model complexity metrics are saved to:
 ```text
 models/<arch_name>/<dataset>/model_analysis.json
 ```
+
+## Acknowledgements
+
+This codebase uses certain code blocks and helper functions from [UNeXt-pytorch](https://github.com/jeya-maria-jose/UNeXt-pytorch). Credit to Jeya Maria Jose for sharing their code implementation.

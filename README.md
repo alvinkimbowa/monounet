@@ -168,3 +168,19 @@ models/<arch_name>/<dataset>/model_analysis.json
 ## Acknowledgements
 
 This codebase uses certain code blocks and helper functions from [UNeXt-pytorch](https://github.com/jeya-maria-jose/UNeXt-pytorch). Credit to Jeya Maria Jose for sharing their code implementation.
+
+## Citation
+If you find this work useful, please cite the paper below
+
+```bibtex
+@article{KIMBOWA2026,
+title = {MonoUNet: A Robust Tiny Neural Network for Automated Knee Cartilage Segmentation on Point-of-care Ultrasound Devices},
+journal = {Ultrasound in Medicine & Biology},
+year = {2026},
+issn = {0301-5629},
+doi = {https://doi.org/10.1016/j.ultrasmedbio.2026.04.011},
+url = {https://www.sciencedirect.com/science/article/pii/S0301562926001572},
+author = {Alvin Kimbowa and Arjun Parmar and Ibrahim Mujtaba and Will Wei and Maziar Badii and Matthew Harkey and David Liu and Ilker Hacihaliloglu},
+keywords = {Knee cartilage, Segmentation, Ultrasound, Point-of-care ultrasound, Local phase features, Lightweight architecture, Knee osteoarthritis},
+}
+```

@@ -43,7 +43,7 @@ data/
 
 ## How To Run MonoUNet
 
-Most users should run MonoUNet through `[run_train.sh](/home/ultrai/UltrAi/monounet/run_train.sh)`. It is the recommended entrypoint for training, evaluation, and analysis.
+The recommended entrypoint for training, evaluation, and analysis is by updating and running the bash script [`run_train.sh`](run_train.sh).
 
 Edit that script first to choose:
 
@@ -91,6 +91,8 @@ python train.py \
 
 To evaluate a trained checkpoint manually:
 
+Run the command below to obtain the model predictions
+
 ```bash
 python val.py \
   --name MonoUNetE123V2Gated \
@@ -106,9 +108,17 @@ python val.py \
   --largest_component True
 ```
 
-Use `test_split Ts` when evaluating on held-out test data stored under `imagesTs` and `labelsTs`.
+Then update [`evaluate_in_orig_space.sh`](evaluate_in_orig_space.sh) to compute the metrics (Dice and HD95), and cartilage outcomes (cartilage thickness and intensity).
 
-## Where Results Go
+To compute Dice, HD95, and MASD, set `COMPUTE="performance"`, and to compute cartilage thickness and echo intensity outcomes, set `COMPUTE="outcomes"`.
+
+Then run:
+
+```bash
+bash evaluate_in_orig_space.sh
+```
+
+`Note: Use "test_split Ts" when evaluating on held-out test data stored under "imagesTs" and "labelsTs"`.
 
 Training outputs are saved under:
 

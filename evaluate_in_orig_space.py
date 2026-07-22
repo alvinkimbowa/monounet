@@ -73,7 +73,6 @@ def parse_args():
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--shuffle", action="store_true")
     parser.add_argument("--recompute_existing", action="store_true")
-    parser.add_argument("--metric_space", choices=["pred", "orig"], default="pred")
     parser.add_argument("--compute", choices=["performance", "outcomes"], default="performance")
     return parser.parse_args()
 

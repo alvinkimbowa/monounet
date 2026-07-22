@@ -17,7 +17,7 @@ dataset_name="Dataset073_GE_LE"
 lr=0.0001
 epochs=1000
 b=8
-fold=0
+
 resume_ckpt="auto"   # "auto" uses <MODELS_DIR>/<arch_name>/<dataset>/fold_<fold>/model_latest.pth
 
 gpu=0
@@ -99,10 +99,6 @@ else
     deep_supervision=False
     input_channels=3
     num_classes=1
-fi
-
-if [[ $fold -eq 5 ]]; then
-    fold="all"
 fi
 
 for fold in {0..2}; do

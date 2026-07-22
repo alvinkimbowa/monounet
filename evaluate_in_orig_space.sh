@@ -20,7 +20,6 @@ test_dataset_ids=(70)
 DEBUG=false
 SHUFFLE=false
 RECOMPUTE_EXISTING=false
-METRIC_SPACE="pred" # "orig"
 # COMPUTE="performance"
 COMPUTE="outcomes"
 
@@ -43,7 +42,6 @@ for MODEL in "${models[@]}"; do
 					--split "$SPLIT"
 					--orig_datasets "$ORIG_DATASETS"
 					--resolution_csv "$RESOLUTION_CSV"
-					--metric_space "$METRIC_SPACE"
 					--compute "$COMPUTE"
 				)
 

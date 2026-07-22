@@ -20,8 +20,8 @@ test_dataset_ids=(70)
 DEBUG=false
 SHUFFLE=false
 RECOMPUTE_EXISTING=false
-# COMPUTE="performance"
-COMPUTE="outcomes"
+COMPUTE="performance"
+# COMPUTE="outcomes"
 
 for MODEL in "${models[@]}"; do
 	for FOLD in {0..2}; do

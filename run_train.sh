@@ -2,6 +2,7 @@
 
 nnUNet_raw="data/nnUNet_raw"
 nnUNet_preprocessed="data/nnUNet_preprocessed"
+MODELS_DIR="/models"
 
 export nnUNet_raw=$nnUNet_raw
 export nnUNet_preprocessed=$nnUNet_preprocessed
@@ -17,7 +18,7 @@ lr=0.0001
 epochs=1000
 b=8
 fold=0
-resume_ckpt="auto"   # "auto" will use models/<arch_name>/<dataset>/fold_<fold>/checkpoint_latest.pth
+resume_ckpt="auto"   # "auto" uses <MODELS_DIR>/<arch_name>/<dataset>/fold_<fold>/model_latest.pth
 
 gpu=0
 export CUDA_VISIBLE_DEVICES=$gpu
@@ -134,7 +135,7 @@ for fold in {0..2}; do
 
         if [[ "$resume_ckpt" == "auto" || -z "$resume_ckpt" ]]; then
             # Search for either model_latest.pth (for resuming) or model_final.pth (if training completed)
-            ckpt_dir="models/${arch_name}/${dataset_name}/fold_${fold}"
+            ckpt_dir="${MODELS_DIR}/${arch_name}/${dataset_name}/fold_${fold}"
             if [[ -f "${ckpt_dir}/model_latest.pth" ]]; then
                 resume_ckpt="${ckpt_dir}/model_latest.pth"
             elif [[ -f "${ckpt_dir}/model_final.pth" ]]; then
@@ -145,6 +146,7 @@ for fold in {0..2}; do
         fi
 
         python train.py \
+            --models_dir "$MODELS_DIR" \
             --dataset $dataset_name \
             --arch $arch \
             --lr $lr \
@@ -174,6 +176,7 @@ for fold in {0..2}; do
                 test_split="Tr"
             fi
             python val.py \
+            --models_dir "$MODELS_DIR" \
             --name $arch \
             --train_dataset $dataset_name \
             --train_fold $fold \
@@ -232,7 +235,7 @@ if [[ $analyze -eq 1 ]]; then
             current_arch="$current_arch"DA
         fi
 
-        model_dir="models/$current_arch/$dataset_name"
+        model_dir="$MODELS_DIR/$current_arch/$dataset_name"
         echo "model_dir: $model_dir"
         if [[ -d "$model_dir" ]]; then
             analyze_args="$analyze_args --save $model_dir/model_analysis.json"

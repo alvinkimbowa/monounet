@@ -41,6 +41,7 @@ MONOUNET_ARCH_NAMES = MonoUNets.__all__
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--models_dir', default='models')
 
     parser.add_argument('--name', default=None,
                         help='model name: (default: arch+timestamp)')
@@ -369,7 +370,7 @@ def main():
         base_arch_name = arch_name
         arch_name += 'Cascade'
     
-    model_dir = f"models/{arch_name}/{config['dataset']}/fold_{fold_str}"
+    model_dir = os.path.join(config['models_dir'], arch_name, config['dataset'], f"fold_{fold_str}")
     os.makedirs(model_dir, exist_ok=True)
     
     if config['name'] is None:
@@ -426,7 +427,13 @@ def main():
         model = MonoUNets.CascadeBase(
             base_arch=MonoUNets.__dict__[config['arch']],
             refiner_arch=MonoUNets.__dict__[config['refiner_arch']],
-            base_ckpt=f"models/{base_arch_name}/{config['dataset']}/fold_{config['fold']}/{config['ckpt']}",
+            base_ckpt=os.path.join(
+                config['models_dir'],
+                base_arch_name,
+                config['dataset'],
+                f"fold_{config['fold']}",
+                config['ckpt'],
+            ),
             base_kwargs={"in_channels": config['input_channels'], "num_classes": config['num_classes'], "img_size": (config['input_h'], config['input_w']), "deep_supervision": config['deep_supervision']},
             refiner_kwargs={"in_channels": config['input_channels'] + 1, "num_classes": config['num_classes'], "img_size": (config['input_h'], config['input_w']), "deep_supervision": config['deep_supervision']},
             model_dir=model_dir,

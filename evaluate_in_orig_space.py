@@ -56,6 +56,7 @@ IGNORE_IDS = {
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--models_dir", default="models")
     parser.add_argument("--model", required=True)
     parser.add_argument("--fold", type=int, required=True)
     parser.add_argument("--train_dataset_id", type=int, required=True)
@@ -430,7 +431,7 @@ def main():
     test_dataset = get_dataset_name(nnunet_raw, args.test_dataset_id)
     split = args.split or ("Ts" if args.test_dataset_id == 79 else "Tr")
 
-    model_dir = f"models/{args.model}/{train_dataset}/fold_{args.fold}"
+    model_dir = os.path.join(args.models_dir, args.model, train_dataset, f"fold_{args.fold}")
     preds_dir = f"{model_dir}/test/{test_dataset}/preds"
     if test_dataset == train_dataset:
         image_wise_results_path = os.path.join(

@@ -5,6 +5,7 @@ export nnUNet_raw="/home/ultrai/UltrAi/knee_us_segmentation/data/nnUNet_raw"
 export nnUNet_results="/home/ultrai/UltrAi/knee_us_segmentation/data/nnUNet_results"
 ORIG_DATASETS="/home/ultrai/UltrAi/knee_us_segmentation/data/raw_data/datasets"
 RESOLUTION_CSV="/home/ultrai/UltrAi/knee_us_segmentation/data/pixel_physical_resolution.csv"
+MODELS_DIR="models"
 
 # models=(UNext Med_NCA CMUNeXt-S TinyUNet)
 # models=(UNextDA Med_NCADA CMUNeXt-SDA TinyUNetDA)
@@ -34,6 +35,7 @@ for MODEL in "${models[@]}"; do
 				fi
 				echo "Evaluating $MODEL: Fold $FOLD, Train $TRAIN_DATASET_ID, Test $TEST_DATASET_ID"
 				ARGS=(
+					--models_dir "$MODELS_DIR"
 					--model "$MODEL"
 					--fold "$FOLD"
 					--train_dataset_id "$TRAIN_DATASET_ID"

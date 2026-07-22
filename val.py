@@ -81,6 +81,7 @@ def visualize_prediction(img, pred, gt=None, dice=None, masd=None, hd95=None, sa
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--models_dir', default='models')
 
     parser.add_argument('--name', required=True,
                         help='model name')
@@ -135,8 +136,8 @@ def main():
     base_arch_name = arch_name
     if args.cascade:
         arch_name += 'Cascade'
-    model_dir = f"models/{arch_name}/{args.train_dataset}/fold_{args.train_fold}"
-    base_model_dir = f"models/{base_arch_name}/{args.train_dataset}/fold_{args.train_fold}"
+    model_dir = os.path.join(args.models_dir, arch_name, args.train_dataset, f"fold_{args.train_fold}")
+    base_model_dir = os.path.join(args.models_dir, base_arch_name, args.train_dataset, f"fold_{args.train_fold}")
     with open(f'{model_dir}/config.yml', 'r') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
 

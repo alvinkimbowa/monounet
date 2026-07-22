@@ -4,16 +4,7 @@ This repo contains the training, evaluation, and analysis code for MonoUNet vari
 
 ## Environment Setup
 
-You can set the environment up in either of these ways.
-
-Conda:
-
-```bash
-conda env create -f environment.yml
-conda activate unext
-```
-
-Pip:
+Set up the environment using Pip as follows:
 
 ```bash
 python -m venv .venv
@@ -21,8 +12,6 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-
-The original environment file is based on Python 3.6.13. If you use a newer Python or CUDA stack, make sure `torch`, `torchvision`, and `mmcv` are installed in compatible versions.
 
 ## Data Setup
 

@@ -2,7 +2,7 @@
 
 nnUNet_raw="data/nnUNet_raw"
 nnUNet_preprocessed="data/nnUNet_preprocessed"
-MODELS_DIR="/models"
+MODELS_DIR="models"
 
 export nnUNet_raw=$nnUNet_raw
 export nnUNet_preprocessed=$nnUNet_preprocessed

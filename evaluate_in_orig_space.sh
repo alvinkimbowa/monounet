@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export nnUNet_raw="data/nnUNet_raw"
-export nnUNet_results="data/nnUNet_results"
-ORIG_DATASETS="data/raw_data/datasets"
-RESOLUTION_CSV="data/pixel_physical_resolution.csv"
+export nnUNet_raw="../knee_us_segmentation/data/nnUNet_raw"
+export nnUNet_results="../knee_us_segmentation/data/nnUNet_results"
+ORIG_DATASETS="../knee_us_segmentation/data/raw_data/datasets"
+RESOLUTION_CSV="../knee_us_segmentation/data/pixel_physical_resolution.csv"
 MODELS_DIR="models"
 
 # models=(UNext Med_NCA CMUNeXt-S TinyUNet)

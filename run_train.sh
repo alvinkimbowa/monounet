@@ -1,7 +1,7 @@
 #!/bin/bash
 
-nnUNet_raw="data/nnUNet_raw"
-nnUNet_preprocessed="data/nnUNet_preprocessed"
+nnUNet_raw="../knee_us_segmentation/data/nnUNet_raw"
+nnUNet_preprocessed="../knee_us_segmentation/data/nnUNet_preprocessed"
 MODELS_DIR="models"
 
 export nnUNet_raw=$nnUNet_raw

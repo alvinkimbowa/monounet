@@ -21,3 +21,4 @@ yacs
 nibabel
 monai
 thop
+pingouin

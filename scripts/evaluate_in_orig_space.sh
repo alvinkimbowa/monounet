@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 
-export nnUNet_raw="../knee_us_segmentation/data/nnUNet_raw"
+export nnUNet_raw="data/nnUNet_raw"
 export nnUNet_results="../knee_us_segmentation/data/nnUNet_results"
 ORIG_DATASETS="../knee_us_segmentation/data/raw_data/datasets"
 RESOLUTION_CSV="../knee_us_segmentation/data/pixel_physical_resolution.csv"

@@ -4,8 +4,8 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 
-nnUNet_raw="../knee_us_segmentation/data/nnUNet_raw"
-nnUNet_preprocessed="../knee_us_segmentation/data/nnUNet_preprocessed"
+nnUNet_raw="data/nnUNet_raw"
+nnUNet_preprocessed="data/nnUNet_preprocessed"
 MODELS_DIR="models"
 
 export nnUNet_raw=$nnUNet_raw

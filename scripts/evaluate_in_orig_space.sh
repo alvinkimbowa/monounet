@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
 export nnUNet_raw="../knee_us_segmentation/data/nnUNet_raw"
 export nnUNet_results="../knee_us_segmentation/data/nnUNet_results"
 ORIG_DATASETS="../knee_us_segmentation/data/raw_data/datasets"
@@ -58,7 +62,7 @@ for MODEL in "${models[@]}"; do
 				fi
 
 				python \
-					evaluate_in_orig_space.py \
+					src/evaluate_in_orig_space.py \
 					"${ARGS[@]}"
 			done
 		done

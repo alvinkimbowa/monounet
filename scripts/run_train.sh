@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
 nnUNet_raw="../knee_us_segmentation/data/nnUNet_raw"
 nnUNet_preprocessed="../knee_us_segmentation/data/nnUNet_preprocessed"
 MODELS_DIR="models"
@@ -141,7 +145,7 @@ for fold in {0..2}; do
             fi
         fi
 
-        python train.py \
+        python src/train.py \
             --models_dir "$MODELS_DIR" \
             --dataset $dataset_name \
             --arch $arch \
@@ -171,7 +175,7 @@ for fold in {0..2}; do
             else
                 test_split="Tr"
             fi
-            python val.py \
+            python src/val.py \
             --models_dir "$MODELS_DIR" \
             --name $arch \
             --train_dataset $dataset_name \
@@ -237,7 +241,7 @@ if [[ $analyze -eq 1 ]]; then
             analyze_args="$analyze_args --save $model_dir/model_analysis.json"
         fi
         
-        python analyze_model.py $analyze_args
+        python src/analyze_model.py $analyze_args
         
         echo "✓ Completed analysis for $current_arch"
     done

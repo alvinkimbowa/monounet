@@ -39,11 +39,19 @@ data/
       splits_final.json
 ```
 
-`splits_final.json` provides the train/validation folds used by `train.py`.
+`splits_final.json` provides the train/validation folds used by `src/train.py`.
+
+## Repository Layout
+
+```text
+src/        Python modules and CLI entry points
+notebooks/  Interactive analysis and debugging notebooks
+scripts/    Bash launchers
+```
 
 ## How To Run MonoUNet
 
-The recommended entrypoint for training, evaluation, and analysis is by updating and running the bash script [`run_train.sh`](run_train.sh).
+The recommended entrypoint for training, evaluation, and analysis is by updating and running [`scripts/run_train.sh`](scripts/run_train.sh).
 
 Edit that script first to choose:
 
@@ -57,17 +65,17 @@ Edit that script first to choose:
 Then run:
 
 ```bash
-bash run_train.sh
+bash scripts/run_train.sh
 ```
 
 At the moment, the script is set up to train `MonoUNetE123V2Gated` on `Dataset073_GE_LE`, loop over folds `0..2`, and then optionally run evaluation and model analysis.
 
-Data augmentation is enabled by default in both `run_train.sh` and the Python CLI entrypoints.
+Data augmentation is enabled by default in both `scripts/run_train.sh` and the Python CLI entrypoints.
 
 If you want to run training directly instead of using the shell script:
 
 ```bash
-python train.py \
+python src/train.py \
   --dataset Dataset073_GE_LE \
   --arch MonoUNetE123V2Gated \
   --lr 0.01 \
@@ -94,7 +102,7 @@ To evaluate a trained checkpoint manually:
 Run the command below to obtain the model predictions
 
 ```bash
-python val.py \
+python src/val.py \
   --name MonoUNetE123V2Gated \
   --train_dataset Dataset073_GE_LE \
   --train_fold 0 \
@@ -108,14 +116,14 @@ python val.py \
   --largest_component True
 ```
 
-Then update [`evaluate_in_orig_space.sh`](evaluate_in_orig_space.sh) to compute the metrics (Dice and HD95), and cartilage outcomes (cartilage thickness and intensity).
+Then update [`scripts/evaluate_in_orig_space.sh`](scripts/evaluate_in_orig_space.sh) to compute the metrics (Dice and HD95), and cartilage outcomes (cartilage thickness and intensity).
 
 To compute Dice, HD95, and MASD, set `COMPUTE="performance"`, and to compute cartilage thickness and echo intensity outcomes, set `COMPUTE="outcomes"`.
 
 Then run:
 
 ```bash
-bash evaluate_in_orig_space.sh
+bash scripts/evaluate_in_orig_space.sh
 ```
 
 `Note: Use "test_split Ts" when evaluating on held-out test data stored under "imagesTs" and "labelsTs"`.
@@ -158,7 +166,7 @@ Depending on flags, that directory can contain:
 - `preds/`
 - `overlays/`
 
-If analysis is enabled in `run_train.sh`, model complexity metrics are saved to:
+If analysis is enabled in `scripts/run_train.sh`, model complexity metrics are saved to:
 
 ```text
 models/<arch_name>/<dataset>/model_analysis.json

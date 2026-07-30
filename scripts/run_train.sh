@@ -79,7 +79,7 @@ elif [[ $arch == "TinyUNet" ]]; then
     weight_decay=1e-4
     deep_supervision=False
     input_channels=3
-    num_classes=1
+    num_classes=2
 elif [[ $arch == XTiny* || $arch == MonoUNet* || $arch == UNetBaseline ]]; then
     lr=0.01
     weight_decay=0.01
@@ -91,7 +91,7 @@ elif [[ $arch == XTiny* || $arch == MonoUNet* || $arch == UNetBaseline ]]; then
     optimizer="AdamW"
     scheduler="PolyLR"
     input_channels=1
-    num_classes=1
+    num_classes=2
 else
     min_lr=1e-5
     loss="BCEDiceLoss"
